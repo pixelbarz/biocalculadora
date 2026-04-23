@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BioCalculadora – Qualidade do Bioetanol</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <span class="logo-icon">⚗</span>
+      <span class="logo-text">Bio<strong>Calculadora</strong></span>
+    </div>
+    <div class="nav-links">
+      <a href="#inicio" class="nav-link active">Início</a>
+      <a href="#calculadora" class="nav-link">Calculadora</a>
+      <a href="#parametros" class="nav-link">Parâmetros</a>
+      <a href="#sobre" class="nav-link">Sobre nós</a>
+    </div>
+    <a href="#calculadora" class="nav-cta">Calcular agora →</a>
+    <button class="hamburger" id="hamburger">☰</button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#inicio">Início</a>
+    <a href="#calculadora">Calculadora</a>
+    <a href="#parametros">Parâmetros</a>
+    <a href="#sobre">Sobre nós</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg">
+      <div class="hero-blob b1"></div>
+      <div class="hero-blob b2"></div>
+      <div class="hero-blob b3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">🌿 Plataforma Sucroenergética</div>
+      <h1 class="hero-title">
+        Meça a qualidade<br>
+        do seu <em>bioetanol</em><br>
+        com precisão.
+      </h1>
+      <p class="hero-sub">
+        Ferramenta desenvolvida para usinas, distribuidoras e postos de combustível.<br>
+        Diagnóstico rápido com base em parâmetros reais de laboratório.
+      </p>
+      <div class="hero-actions">
+        <a href="#calculadora" class="btn-primary">Acessar Calculadora</a>
+        <a href="#parametros" class="btn-ghost">Ver Parâmetros ABNT</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">99,7%</span><span class="stat-label">Precisão</span></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-num">7+</span><span class="stat-label">Índices analisados</span></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Gratuito</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="gauge-wrap">
+        <svg class="gauge-svg" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#e74c3c"/>
+              <stop offset="50%" style="stop-color:#f39c12"/>
+              <stop offset="100%" style="stop-color:#27ae60"/>
+            </linearGradient>
+          </defs>
+          <path d="M20 120 A90 90 0 0 1 200 120" fill="none" stroke="#1a2a1a" stroke-width="18" stroke-linecap="round"/>
+          <path id="gaugeArc" d="M20 120 A90 90 0 0 1 200 120" fill="none" stroke="url(#arcGrad)" stroke-width="18" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="85" class="gauge-arc-anim"/>
+          <text x="110" y="105" text-anchor="middle" fill="#b8f55a" font-size="28" font-weight="bold" font-family="Bebas Neue">96,2</text>
+          <text x="110" y="122" text-anchor="middle" fill="#6b8c4a" font-size="9" font-family="DM Sans">% TEOR ALCOÓLICO</text>
+          <line id="needle" x1="110" y1="120" x2="110" y2="45" stroke="#b8f55a" stroke-width="2.5" stroke-linecap="round" class="needle-anim"/>
+          <circle cx="110" cy="120" r="6" fill="#b8f55a"/>
+        </svg>
+        <div class="gauge-labels">
+          <span>Ruim</span><span>Regular</span><span>Ótimo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULADORA -->
+  <section class="calc-section" id="calculadora">
+    <div class="section-header">
+      <span class="section-tag">⚗ Ferramenta</span>
+      <h2>Calculadora de Qualidade</h2>
+      <p>Insira os parâmetros da amostra e obtenha o diagnóstico completo</p>
+    </div>
+
+    <div class="calc-container">
+      <!-- INPUTS -->
+      <div class="calc-inputs">
+        <div class="input-group-header">
+          <h3>📋 Parâmetros da Amostra</h3>
+          <button class="btn-clear" onclick="limparCampos()">Limpar</button>
+        </div>
+
+        <div class="input-grid">
+          <div class="field-wrap">
+            <label>Densidade <span class="unit">(g/mL a 20°C)</span></label>
+            <input type="number" id="densidade" placeholder="ex: 0.7893" step="0.0001" min="0.7" max="0.9">
+            <div class="field-hint">Faixa típica: 0.789 – 0.808 g/mL</div>
+          </div>
+
+          <div class="field-wrap">
+            <label>Temperatura <span class="unit">(°C)</span></label>
+            <input type="number" id="temperatura" placeholder="ex: 20" step="0.1" min="0" max="60">
+            <div class="field-hint">Temperatura de medição</div>
+          </div>
+
+          <div class="field-wrap">
+            <label>Teor Alcoólico <span class="unit">(°GL ou %v/v)</span></label>
+            <input type="number" id="teor" placeholder="ex: 96.5" step="0.1" min="0" max="100">
+            <div class="field-hint">Etanol Anidro ≥ 99,3 °GL | Hidratado ≥ 92,6 °GL</div>
+          </div>
+
+          <div class="field-wrap">
+            <label>Teor de Água <span class="unit">(%v/v)</span></label>
+            <input type="number" id="agua" placeholder="ex: 3.5" step="0.1" min="0" max="100">
+            <div class="field-hint">Máx. permitido: 7,4% (hidratado)</div>
+          </div>
+
+          <div class="field-wrap">
+            <label>Acidez Total <span class="unit">(mg/100mL)</span></label>
+            <input type="number" id="acidez" placeholder="ex: 20" step="1" min="0" max="300">
+            <div class="field-hint">Limite: ≤ 30 mg/100mL</div>
+          </div>
+
+          <div class="field-wrap">
+            <label>Condutividade Elétrica <span class="unit">(µS/cm)</span></label>
+            <input type="number" id="condutividade" placeholder="ex: 350" step="1" min="0" max="1000">
+            <div class="field-hint">Máx. permitido: 500 µS/cm</div>
+          </div>
+
+          <div class="field-wrap">
+            <label>pH da Amostra</label>
+            <input type="number" id="ph" placeholder="ex: 6.5" step="0.1" min="0" max="14">
+            <div class="field-hint">Faixa aceitável: 6,0 – 8,0</div>
+          </div>
+
+          <div class="field-wrap">
+            <label>Tipo de Etanol</label>
+            <select id="tipo">
+              <option value="">Selecione...</option>
+              <option value="anidro">Anidro (≥ 99,3 °GL)</option>
+              <option value="hidratado">Hidratado (≥ 92,6 °GL)</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn-calcular" onclick="calcular()">
+          <span class="btn-icon">⚡</span> Calcular Qualidade
+        </button>
+      </div>
+
+      <!-- RESULTADO -->
+      <div class="calc-resultado" id="resultado">
+        <div class="resultado-placeholder" id="placeholder">
+          <div class="placeholder-icon">🧪</div>
+          <p>Preencha os parâmetros ao lado<br>e clique em <strong>Calcular</strong></p>
+        </div>
+
+        <div class="resultado-content" id="resultadoContent" style="display:none">
+          <div class="resultado-header">
+            <h3>Diagnóstico</h3>
+            <div class="score-badge" id="scoreBadge">—</div>
+          </div>
+
+          <div class="status-bar-wrap">
+            <div class="status-label" id="statusLabel">—</div>
+            <div class="status-bar">
+              <div class="status-fill" id="statusFill"></div>
+            </div>
+            <div class="status-score" id="statusScore">0 / 100</div>
+          </div>
+
+          <div class="indicadores-grid" id="indicadoresGrid"></div>
+
+          <div class="resultado-obs" id="resultadoObs"></div>
+
+          <div class="resultado-actions">
+            <button onclick="exportarPDF()" class="btn-export">📄 Exportar Relatório</button>
+            <button onclick="novoCalculo()" class="btn-novo">🔄 Nova Análise</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARÂMETROS ABNT -->
+  <section class="params-section" id="parametros">
+    <div class="section-header light">
+      <span class="section-tag">📏 Referência</span>
+      <h2>Parâmetros Legais (ANP / ABNT)</h2>
+      <p>Normas regulamentadoras vigentes para o bioetanol combustível no Brasil</p>
+    </div>
+
+    <div class="params-table-wrap">
+      <table class="params-table">
+        <thead>
+          <tr>
+            <th>Parâmetro</th>
+            <th>Etanol Anidro</th>
+            <th>Etanol Hidratado</th>
+            <th>Norma</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Teor Alcoólico</td>
+            <td class="good">≥ 99,3 °GL</td>
+            <td class="good">≥ 92,6 °GL</td>
+            <td>NBR 5992</td>
+          </tr>
+          <tr>
+            <td>Teor de Água (%v/v)</td>
+            <td class="good">≤ 0,7%</td>
+            <td class="warn">≤ 7,4%</td>
+            <td>NBR 15531</td>
+          </tr>
+          <tr>
+            <td>Acidez Total (mg/100mL)</td>
+            <td class="good">≤ 30</td>
+            <td class="good">≤ 30</td>
+            <td>NBR 9866</td>
+          </tr>
+          <tr>
+            <td>Condutividade Elétrica (µS/cm)</td>
+            <td class="good">≤ 500</td>
+            <td class="good">≤ 500</td>
+            <td>NBR 10547</td>
+          </tr>
+          <tr>
+            <td>pH</td>
+            <td class="good">6,0 – 8,0</td>
+            <td class="good">6,0 – 8,0</td>
+            <td>NBR 10891</td>
+          </tr>
+          <tr>
+            <td>Densidade (g/mL a 20°C)</td>
+            <td class="good">0,789 – 0,792</td>
+            <td class="warn">0,800 – 0,811</td>
+            <td>NBR 5992</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre-section" id="sobre">
+    <div class="sobre-content">
+      <div class="sobre-text">
+        <span class="section-tag">🌿 Sobre nós</span>
+        <h2>Tecnologia a serviço do setor sucroenergético</h2>
+        <p>A <strong>BioCalculadora</strong> foi desenvolvida para democratizar o acesso a ferramentas de controle de qualidade no setor de biocombustíveis. Nosso objetivo é oferecer diagnósticos rápidos, confiáveis e acessíveis para toda a cadeia produtiva do bioetanol.</p>
+        <p>Seja você um engenheiro químico em uma usina, um técnico em laboratório ou um gestor de postos de combustível, nossa plataforma entrega informação técnica com clareza e precisão.</p>
+        <div class="sobre-cards">
+          <div class="sobre-card">
+            <span>🏭</span>
+            <div>
+              <strong>Usinas</strong>
+              <p>Monitoramento da produção em tempo real</p>
+            </div>
+          </div>
+          <div class="sobre-card">
+            <span>🚛</span>
+            <div>
+              <strong>Distribuidoras</strong>
+              <p>Validação no recebimento de cargas</p>
+            </div>
+          </div>
+          <div class="sobre-card">
+            <span>⛽</span>
+            <div>
+              <strong>Postos</strong>
+              <p>Verificação antes do abastecimento</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sobre-img">
+        <img src="https://nutricaodesafras.com.br/wp-content/uploads/elementor/thumbs/variedades-de-milho-mais-produtivas-r0ropmgffj6ybrhp8zb03jh907c2431dc6f5dzkghc.webp" alt="Campo de cana-de-açúcar">
+        <div class="img-badge">🌾 Setor Sucroenergético</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <span class="logo-icon">⚗</span>
+        <span class="logo-text">Bio<strong>Calculadora</strong></span>
+      </div>
+      <p class="footer-desc">Plataforma gratuita de análise de qualidade para o bioetanol combustível brasileiro.</p>
+      <div class="footer-links">
+        <a href="#inicio">Início</a>
+        <a href="#calculadora">Calculadora</a>
+        <a href="#parametros">Parâmetros</a>
+        <a href="#sobre">Sobre</a>
+      </div>
+      <p class="footer-copy">© 2025 BioCalculadora · Desenvolvido com 🌿 para o agronegócio brasileiro</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
