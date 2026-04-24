@@ -1,9 +1,4 @@
-// ============================================
-//   BIOCALCULADORA – LÓGICA DE CÁLCULO
-//   Análise de qualidade do bioetanol
-// ============================================
 
-/* ---- HAMBURGER MENU ---- */
 document.getElementById('hamburger').addEventListener('click', () => {
   document.getElementById('mobileMenu').classList.toggle('open');
 });
@@ -14,7 +9,6 @@ document.querySelectorAll('.mobile-menu a').forEach(link => {
   });
 });
 
-/* ---- NAVBAR SCROLL ---- */
 const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
   navbar.style.boxShadow = window.scrollY > 20
@@ -22,7 +16,6 @@ window.addEventListener('scroll', () => {
     : 'none';
 });
 
-/* ---- SMOOTH SCROLL PARA LINKS INTERNOS ---- */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
@@ -33,7 +26,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-/* ---- HIGHLIGHT NAVLINK ATIVO ---- */
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
 
@@ -49,14 +41,6 @@ const observer = new IntersectionObserver(entries => {
 }, observerOpts);
 sections.forEach(s => observer.observe(s));
 
-// ============================================
-//   FUNÇÕES DA CALCULADORA
-// ============================================
-
-/**
- * Corrige o teor alcoólico para 20°C usando tabela INPM
- * Fórmula simplificada de correção de temperatura
- */
 function corrigirTeorParа20C(teor, temperatura) {
   if (!teor || !temperatura) return teor;
   const deltaT = temperatura - 20;
@@ -64,9 +48,6 @@ function corrigirTeorParа20C(teor, temperatura) {
   return teor + (deltaT * 0.04);
 }
 
-/**
- * Classifica a densidade conforme tipo de etanol
- */
 function avaliarDensidade(densidade, tipo) {
   if (!densidade || !tipo) return null;
   if (tipo === 'anidro') {
@@ -80,9 +61,6 @@ function avaliarDensidade(densidade, tipo) {
   }
 }
 
-/**
- * Avalia o teor alcoólico corrigido
- */
 function avaliarTeor(teor, tipo) {
   if (!teor || !tipo) return null;
   if (tipo === 'anidro') {
@@ -125,9 +103,6 @@ function avaliarPH(ph) {
   return 'bad';
 }
 
-/**
- * Pontua cada parâmetro: ok=2, warn=1, bad=0, null=skip
- */
 function pontuar(status) {
   if (status === 'ok') return 2;
   if (status === 'warn') return 1;
@@ -135,9 +110,6 @@ function pontuar(status) {
   return null;
 }
 
-/**
- * Retorna emoji e label de status
- */
 function statusInfo(s) {
   if (s === 'ok') return { icon: '✅', label: 'Dentro do padrão', cls: 'ind-ok' };
   if (s === 'warn') return { icon: '⚠️', label: 'Atenção requerida', cls: 'ind-warn' };
@@ -145,11 +117,8 @@ function statusInfo(s) {
   return { icon: '—', label: 'Não informado', cls: 'ind-na' };
 }
 
-/**
- * FUNÇÃO PRINCIPAL DE CÁLCULO
- */
 function calcular() {
-  // Captura de valores
+
   const densidadeVal   = parseFloat(document.getElementById('densidade').value);
   const temperaturaVal = parseFloat(document.getElementById('temperatura').value);
   const teorBruto      = parseFloat(document.getElementById('teor').value);
@@ -159,7 +128,7 @@ function calcular() {
   const phVal          = parseFloat(document.getElementById('ph').value);
   const tipo           = document.getElementById('tipo').value;
 
-  // Validação mínima
+
   if (!tipo) {
     showToast('⚠️ Selecione o tipo de etanol antes de calcular.', 'warn');
     return;
@@ -173,12 +142,12 @@ function calcular() {
     return;
   }
 
-  // Corrige teor para 20°C
+
   const teorCorrigido = !isNaN(teorBruto) && !isNaN(temperaturaVal)
     ? corrigirTeorParа20C(teorBruto, temperaturaVal)
     : teorBruto;
 
-  // Avaliações
+
   const statusDensidade    = isNaN(densidadeVal) ? null : avaliarDensidade(densidadeVal, tipo);
   const statusTeor         = isNaN(teorCorrigido) ? null : avaliarTeor(teorCorrigido, tipo);
   const statusAgua         = isNaN(aguaVal) ? null : avaliarAgua(aguaVal, tipo);
@@ -186,14 +155,14 @@ function calcular() {
   const statusCond         = isNaN(condVal) ? null : avaliarCondutividade(condVal);
   const statusPH           = isNaN(phVal) ? null : avaliarPH(phVal);
 
-  // Cálculo de pontuação
+
   const todos = [statusDensidade, statusTeor, statusAgua, statusAcidez, statusCond, statusPH];
   const pontos = todos.map(pontuar).filter(p => p !== null);
   const totalPontos = pontos.reduce((a, b) => a + b, 0);
   const maxPontos = pontos.length * 2;
   const percentual = maxPontos > 0 ? Math.round((totalPontos / maxPontos) * 100) : 0;
 
-  // Classificação geral
+
   let classificacao, corFill, obsTxt;
   const temBad = todos.some(s => s === 'bad');
   const temWarn = todos.some(s => s === 'warn');
@@ -216,7 +185,7 @@ function calcular() {
     obsTxt = '❌ <strong>Amostra reprovada.</strong> Múltiplos parâmetros fora dos padrões exigidos. Este bioetanol NÃO está apto para comercialização. Verifique o processo produtivo e realize análise laboratorial certificada.';
   }
 
-  // Dados dos indicadores para exibição
+
   const indicadores = [
     {
       nome: 'Densidade (g/mL)',
@@ -256,7 +225,7 @@ function calcular() {
     }
   ];
 
-  // ---- RENDERIZAÇÃO ----
+
   document.getElementById('placeholder').style.display = 'none';
   const content = document.getElementById('resultadoContent');
   content.style.display = 'block';
@@ -269,12 +238,12 @@ function calcular() {
 
   const fill = document.getElementById('statusFill');
   fill.style.background = corFill;
-  // Animação da barra com delay para CSS transition funcionar
+
   setTimeout(() => { fill.style.width = percentual + '%'; }, 50);
 
   document.getElementById('statusScore').textContent = `${totalPontos} / ${maxPontos} pts (${pontos.length} parâmetros avaliados)`;
 
-  // Grid de indicadores
+
   const grid = document.getElementById('indicadoresGrid');
   grid.innerHTML = '';
   indicadores.forEach(ind => {
@@ -290,7 +259,6 @@ function calcular() {
     grid.appendChild(div);
   });
 
-  // Nota sobre correção de temperatura
   if (temperaturaVal && !isNaN(teorBruto) && temperaturaVal !== 20) {
     const notaTemp = `<em>* Teor corrigido de ${teorBruto.toFixed(1)}°GL a ${temperaturaVal}°C → ${teorCorrigido.toFixed(1)}°GL a 20°C (correção INPM simplificada)</em>`;
     document.getElementById('resultadoObs').innerHTML = obsTxt + '<br><br>' + notaTemp;
@@ -298,11 +266,11 @@ function calcular() {
     document.getElementById('resultadoObs').innerHTML = obsTxt;
   }
 
-  // Scroll suave para o resultado
+
   document.getElementById('resultado').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-/* ---- LIMPAR CAMPOS ---- */
+
 function limparCampos() {
   ['densidade','temperatura','teor','agua','acidez','condutividade','ph'].forEach(id => {
     document.getElementById(id).value = '';
@@ -311,20 +279,18 @@ function limparCampos() {
   novoCalculo();
 }
 
-/* ---- NOVA ANÁLISE ---- */
+
 function novoCalculo() {
   document.getElementById('resultadoContent').style.display = 'none';
   document.getElementById('placeholder').style.display = 'flex';
   document.getElementById('statusFill').style.width = '0';
 }
 
-/* ---- EXPORTAR RELATÓRIO (texto formatado) ---- */
 function exportarPDF() {
   const scoreBadge = document.getElementById('scoreBadge').textContent;
   const statusLabel = document.getElementById('statusLabel').textContent;
   const scoreText   = document.getElementById('statusScore').textContent;
 
-  // Coleta os valores
   const linhas = [];
   document.querySelectorAll('.indicador').forEach(ind => {
     const nome  = ind.querySelector('.ind-nome').textContent.trim();
@@ -374,7 +340,6 @@ certificada é obrigatória para fins regulatórios.
   showToast('📄 Relatório exportado com sucesso!', 'ok');
 }
 
-/* ---- TOAST NOTIFICATION ---- */
 function showToast(msg, type = 'ok') {
   const existing = document.querySelector('.toast');
   if (existing) existing.remove();
@@ -402,7 +367,6 @@ function showToast(msg, type = 'ok') {
   setTimeout(() => toast.remove(), 3500);
 }
 
-/* ---- INPUT: feedback visual em tempo real ---- */
 ['densidade','temperatura','teor','agua','acidez','condutividade','ph'].forEach(id => {
   document.getElementById(id).addEventListener('input', function() {
     const val = parseFloat(this.value);
@@ -414,7 +378,6 @@ function showToast(msg, type = 'ok') {
   });
 });
 
-/* ---- TECLA ENTER NO FORMULÁRIO ---- */
 document.querySelectorAll('.calc-inputs input, .calc-inputs select').forEach(el => {
   el.addEventListener('keydown', e => {
     if (e.key === 'Enter') calcular();
