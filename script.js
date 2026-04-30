@@ -377,7 +377,15 @@ function showToast(msg, type = 'ok') {
     }
   });
 });
-
+function handleCookie(choice) {
+  const banner = document.getElementById('cookieBanner');
+  banner.classList.add('dismissed');
+  banner.addEventListener('transitionend', () => {
+    banner.style.display = 'none';
+  }, { once: true });
+  localStorage.setItem('cookieChoice', choice);
+  showToast(choice === 'aceitar' ? '✅ Preferências salvas!' : '🚫 Cookies rejeitados.', 'ok');
+}
 document.querySelectorAll('.calc-inputs input, .calc-inputs select').forEach(el => {
   el.addEventListener('keydown', e => {
     if (e.key === 'Enter') calcular();
