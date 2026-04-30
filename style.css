@@ -767,7 +767,7 @@
   .btn-sobre:hover { background: var(--verde2); }
 
   .label-tag--light { color: var(--verde); border-color: var(--verde); }
-  .cookie-banner {
+.cookie-banner {
   position: fixed;
   bottom: 0; left: 0; right: 0;
   background: #111111;
@@ -781,6 +781,7 @@
   box-shadow: 0 -4px 24px rgba(0,0,0,0.4);
   flex-wrap: wrap;
   animation: fadeUp 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
 }
 .cookie-left { display: flex; align-items: center; gap: 14px; flex: 1; min-width: 260px; }
 .cookie-icon {
@@ -810,11 +811,11 @@
   text-transform: uppercase; cursor: pointer; transition: background 0.15s;
 }
 .btn-aceitar:hover { background: var(--verde2); }
-.cookie-banner.dismissed { display: none; }
-  .footer {
-    background: #0e0e0e;
-    border-top: 3px solid var(--verde);
-  }
+.cookie-banner.dismissed {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+}
   .footer-inner {
     max-width: 1200px;
     margin: 0 auto;
