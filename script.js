@@ -377,17 +377,77 @@ function showToast(msg, type = 'ok') {
     }
   });
 });
+// ─── Cookie Consent real ──────────────────────────────────────────────
+
+function setCookie(name, value, days) {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString();
+  document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
+}
+
+function getCookie(name) {
+  return document.cookie.split('; ').reduce((acc, part) => {
+    const [k, v] = part.split('=');
+    return k === name ? decodeURIComponent(v) : acc;
+  }, null);
+}
+
+function deleteCookie(name) {
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+}
+
+function applyConsent(choice) {
+  if (choice === 'aceitar') {
+    // Cookie real de consentimento (válido por 365 dias)
+    setCookie('biocalc_consent', 'accepted', 365);
+    setCookie('biocalc_session', Date.now(), 7); // cookie de sessão funcional
+
+    // Aqui você habilitaria scripts de analytics, ex: Google Analytics
+    // window.gtag?.('consent', 'update', { analytics_storage: 'granted' });
+
+  } else {
+    // Remove todos os cookies não essenciais
+    deleteCookie('biocalc_session');
+    deleteCookie('biocalc_analytics');
+    // Grava o cookie de rejeição (também 365 dias para lembrar a escolha)
+    setCookie('biocalc_consent', 'rejected', 365);
+    localStorage.removeItem('cookieChoice'); // limpa o localStorage de analytics
+  }
+
+  // Salva no localStorage também (fallback)
+  localStorage.setItem('cookieChoice', choice);
+}
+
 function handleCookie(choice) {
+  applyConsent(choice);
+
   const banner = document.getElementById('cookieBanner');
   banner.classList.add('dismissed');
   banner.addEventListener('transitionend', () => {
     banner.style.display = 'none';
   }, { once: true });
-  localStorage.setItem('cookieChoice', choice);
-  showToast(choice === 'aceitar' ? '✅ Preferências salvas!' : '🚫 Cookies rejeitados.', 'ok');
+
+  showToast(
+    choice === 'aceitar'
+      ? '✅ Cookies aceitos e registrados!'
+      : '🚫 Cookies rejeitados. Apenas o essencial será salvo.',
+    'ok'
+  );
 }
-document.querySelectorAll('.calc-inputs input, .calc-inputs select').forEach(el => {
-  el.addEventListener('keydown', e => {
-    if (e.key === 'Enter') calcular();
-  });
-});
+
+// Verifica ao carregar a página se já existe consentimento
+(function initCookieBanner() {
+  const cookieSalvo  = getCookie('biocalc_consent');
+  const storageSalvo = localStorage.getItem('cookieChoice');
+
+  if (cookieSalvo || storageSalvo) {
+    // Já escolheu antes — esconde o banner sem animação
+    const banner = document.getElementById('cookieBanner');
+    if (banner) banner.style.display = 'none';
+
+    // Re-aplica as preferências sem mostrar toast
+    const choice = cookieSalvo === 'accepted' || storageSalvo === 'aceitar'
+      ? 'aceitar'
+      : 'rejeitar';
+    applyConsent(choice);
+  }
+})();
