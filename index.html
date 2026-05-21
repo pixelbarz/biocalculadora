@@ -29,6 +29,8 @@
         <a href="#inicio" class="nav-link active">Início</a>
         <a href="#calculadora" class="nav-link">Calculadora</a>
         <a href="#parametros" class="nav-link">Parâmetros ANP</a>
+        <a href="#glossario" class="nav-link">Glossário</a>
+        <a href="#conversor" class="nav-link">Conversor</a>
         <a href="#sobre" class="nav-link">Sobre</a>
       </div>
       <a href="#calculadora" class="nav-cta">Calcular agora</a>
@@ -41,8 +43,12 @@
     <a href="#inicio">Início</a>
     <a href="#calculadora">Calculadora</a>
     <a href="#parametros">Parâmetros ANP</a>
+    <a href="#glossario">Glossário</a>
+    <a href="#conversor">Conversor</a>
     <a href="#sobre">Sobre</a>
   </div>
+
+  <!-- HERO -->
   <section class="hero" id="inicio">
     <div class="hero-img-wrap">
       <img
@@ -52,7 +58,6 @@
       >
       <div class="hero-overlay"></div>
     </div>
-
     <div class="hero-content">
       <p class="hero-eyebrow">Plataforma Sucroenergética · Brasil</p>
       <h1 class="hero-title">
@@ -68,7 +73,6 @@
         <a href="#parametros" class="btn-hero-ghost">Normas de referência</a>
       </div>
     </div>
-
     <div class="hero-stats-bar">
       <div class="hstat">
         <span class="hstat-num">99,7%</span>
@@ -91,6 +95,8 @@
       </div>
     </div>
   </section>
+
+  <!-- INTRO -->
   <section class="intro-section">
     <div class="intro-inner">
       <div class="intro-text">
@@ -127,6 +133,8 @@
       </div>
     </div>
   </section>
+
+  <!-- CALCULADORA -->
   <section class="calc-section" id="calculadora">
     <div class="calc-header">
       <span class="label-tag">Ferramenta</span>
@@ -135,12 +143,12 @@
     </div>
 
     <div class="calc-container">
+      <!-- Painel de inputs -->
       <div class="calc-inputs">
         <div class="cinput-header">
           <h3>Parâmetros da Amostra</h3>
           <button class="btn-clear" onclick="limparCampos()">Limpar campos</button>
         </div>
-
         <div class="input-grid">
           <div class="field-wrap">
             <label>Tipo de Etanol <span class="req">*</span></label>
@@ -150,54 +158,48 @@
               <option value="hidratado">Etanol Hidratado (≥ 92,6 °GL)</option>
             </select>
           </div>
-
           <div class="field-wrap">
             <label>Temperatura de Medição <span class="unit">(°C)</span></label>
             <input type="number" id="temperatura" placeholder="ex: 20" step="0.1" min="0" max="60">
             <div class="field-hint">Padrão de referência: 20°C</div>
           </div>
-
           <div class="field-wrap">
             <label>Densidade <span class="unit">(g/mL a 20°C)</span></label>
             <input type="number" id="densidade" placeholder="ex: 0.7893" step="0.0001" min="0.7" max="0.9">
             <div class="field-hint">Anidro: 0,789–0,792 · Hidratado: 0,800–0,811</div>
           </div>
-
           <div class="field-wrap">
             <label>Teor Alcoólico <span class="unit">(°GL)</span></label>
             <input type="number" id="teor" placeholder="ex: 96.5" step="0.1" min="0" max="100">
             <div class="field-hint">Anidro ≥ 99,3 °GL · Hidratado ≥ 92,6 °GL</div>
           </div>
-
           <div class="field-wrap">
             <label>Teor de Água <span class="unit">(%v/v)</span></label>
             <input type="number" id="agua" placeholder="ex: 3.5" step="0.1" min="0" max="100">
             <div class="field-hint">Anidro ≤ 0,7% · Hidratado ≤ 7,4%</div>
           </div>
-
           <div class="field-wrap">
             <label>Acidez Total <span class="unit">(mg/100mL)</span></label>
             <input type="number" id="acidez" placeholder="ex: 20" step="1" min="0" max="300">
             <div class="field-hint">Limite máximo: 30 mg/100mL</div>
           </div>
-
           <div class="field-wrap">
             <label>Condutividade Elétrica <span class="unit">(µS/cm)</span></label>
             <input type="number" id="condutividade" placeholder="ex: 350" step="1" min="0" max="1000">
             <div class="field-hint">Limite máximo: 500 µS/cm</div>
           </div>
-
           <div class="field-wrap">
             <label>pH da Amostra</label>
             <input type="number" id="ph" placeholder="ex: 6.5" step="0.1" min="0" max="14">
             <div class="field-hint">Faixa aceitável: 6,0 – 8,0</div>
           </div>
         </div>
-
         <button class="btn-calcular" onclick="calcular()">
           Calcular Qualidade
         </button>
       </div>
+
+      <!-- Painel de resultados com abas -->
       <div class="calc-resultado" id="resultado">
         <div class="resultado-placeholder" id="placeholder">
           <div class="placeholder-icon">⚗</div>
@@ -205,6 +207,7 @@
         </div>
 
         <div class="resultado-content" id="resultadoContent" style="display:none">
+          <!-- Cabeçalho de resultado -->
           <div class="res-topo">
             <div>
               <div class="res-label">Resultado da Análise</div>
@@ -220,18 +223,45 @@
             <div class="res-barra-leg" id="statusScore">0 / 0 pts</div>
           </div>
 
-          <div class="indicadores-grid" id="indicadoresGrid"></div>
+          <!-- Tabs do resultado -->
+          <div class="res-tabs">
+            <button class="tab-btn active" data-tab="tab-resultados">📊 Indicadores</button>
+            <button class="tab-btn" data-tab="tab-grafico">📈 Gráfico</button>
+          </div>
 
-          <div class="res-obs" id="resultadoObs"></div>
+          <!-- Tab: Indicadores -->
+          <div class="tab-pane active" id="tab-resultados">
+            <div class="indicadores-grid" id="indicadoresGrid"></div>
+            <div class="res-obs" id="resultadoObs"></div>
+            <div class="res-actions">
+              <button onclick="exportarPDF()" class="btn-export">Exportar relatório</button>
+              <button onclick="novoCalculo()" class="btn-novo">Nova análise</button>
+            </div>
+          </div>
 
-          <div class="res-actions">
-            <button onclick="exportarPDF()" class="btn-export">Exportar relatório</button>
-            <button onclick="novoCalculo()" class="btn-novo">Nova análise</button>
+          <!-- Tab: Gráfico -->
+          <div class="tab-pane" id="tab-grafico">
+            <div class="chart-header">
+              <span class="chart-title">Distribuição dos parâmetros analisados</span>
+              <span class="chart-sub">Comparativo com os limites ANP</span>
+            </div>
+            <div id="chartArea" class="chart-area"></div>
+            <div class="chart-legend">
+              <span class="leg-item leg-ok">● Dentro do padrão</span>
+              <span class="leg-item leg-warn">● Atenção</span>
+              <span class="leg-item leg-bad">● Fora do padrão</span>
+            </div>
+            <div class="res-actions" style="margin-top:16px">
+              <button onclick="exportarPDF()" class="btn-export">Exportar relatório</button>
+              <button onclick="novoCalculo()" class="btn-novo">Nova análise</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- PARÂMETROS ANP -->
   <section class="params-section" id="parametros">
     <div class="params-inner">
       <div class="params-header">
@@ -261,6 +291,148 @@
       </div>
     </div>
   </section>
+
+  <!-- GLOSSÁRIO DE PARÂMETROS -->
+  <section class="glossario-section" id="glossario">
+    <div class="glossario-inner">
+      <div class="glossario-header">
+        <span class="label-tag">Entenda os parâmetros</span>
+        <h2>Glossário Técnico</h2>
+        <p>O que significa cada valor que você insere na calculadora?</p>
+      </div>
+
+      <div class="gloss-grid">
+
+        <div class="gloss-card">
+          <div class="gloss-card-top">
+            <span class="gloss-icon">🌡️</span>
+            <div>
+              <div class="gloss-name">Temperatura de Medição</div>
+              <div class="gloss-unit">°C · Padrão ANP: 20°C</div>
+            </div>
+          </div>
+          <p class="gloss-desc">
+            A temperatura na qual a amostra é analisada no laboratório. Como o álcool se expande com o calor, todas as leituras são padronizadas a <strong>20°C</strong> pela ANP. Se você medir a 25°C, por exemplo, o teor alcoólico aparece menor do que o real — a calculadora corrige isso automaticamente.
+          </p>
+          <div class="gloss-tip">💡 <strong>Por que importa:</strong> uma leitura fora da temperatura padrão sem correção pode reprovar uma amostra boa.</div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-card-top">
+            <span class="gloss-icon">⚗️</span>
+            <div>
+              <div class="gloss-name">Densidade</div>
+              <div class="gloss-unit">g/mL · Medida a 20°C</div>
+            </div>
+          </div>
+          <p class="gloss-desc">
+            Indica quanto pesa 1 mililitro de bioetanol. Quanto <strong>maior o teor de álcool</strong>, menor a densidade (o álcool puro é mais leve que a água). O etanol anidro, com quase zero de água, tem densidade em torno de 0,789–0,792 g/mL. O hidratado, com mais água, fica entre 0,800–0,811 g/mL.
+          </p>
+          <div class="gloss-tip">💡 <strong>Por que importa:</strong> uma densidade alta demais pode indicar adulteração com água ou outro líquido.</div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-card-top">
+            <span class="gloss-icon">🍶</span>
+            <div>
+              <div class="gloss-name">Teor Alcoólico</div>
+              <div class="gloss-unit">°GL (Graus Gay-Lussac)</div>
+            </div>
+          </div>
+          <p class="gloss-desc">
+            Representa a <strong>percentagem de álcool etílico puro</strong> em volume na mistura. Um teor de 96,5°GL significa que 96,5% do volume é álcool e o restante é água e outras substâncias. No Brasil, o °GL é praticamente igual ao % v/v (INPM) para fins práticos.
+          </p>
+          <div class="gloss-tip">💡 <strong>Por que importa:</strong> teor baixo significa menos energia por litro e potencial problema de desempenho nos veículos.</div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-card-top">
+            <span class="gloss-icon">💧</span>
+            <div>
+              <div class="gloss-name">Teor de Água</div>
+              <div class="gloss-unit">% v/v</div>
+            </div>
+          </div>
+          <p class="gloss-desc">
+            Quantidade de água presente no etanol, expressa em percentagem de volume. O <strong>etanol anidro</strong> (misturado à gasolina) não pode ter mais de 0,7% de água, pois causaria separação de fase no tanque. Já o <strong>hidratado</strong> (usado puro) tolera até 7,4%.
+          </p>
+          <div class="gloss-tip">💡 <strong>Por que importa:</strong> água em excesso no anidro pode danificar o sistema de combustível dos veículos flex.</div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-card-top">
+            <span class="gloss-icon">🧪</span>
+            <div>
+              <div class="gloss-name">Acidez Total</div>
+              <div class="gloss-unit">mg de ácido acético / 100 mL</div>
+            </div>
+          </div>
+          <p class="gloss-desc">
+            Mede a quantidade de <strong>ácidos orgânicos</strong> presentes no etanol, principalmente ácido acético (vinagre). Esses ácidos surgem durante a fermentação ou armazenamento inadequado e são corrosivos para componentes metálicos do motor e tanque.
+          </p>
+          <div class="gloss-tip">💡 <strong>Por que importa:</strong> acidez alta corrói bicos injetores, válvulas e tanques de aço inoxidável.</div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-card-top">
+            <span class="gloss-icon">⚡</span>
+            <div>
+              <div class="gloss-name">Condutividade Elétrica</div>
+              <div class="gloss-unit">µS/cm (microsiemens por centímetro)</div>
+            </div>
+          </div>
+          <p class="gloss-desc">
+            Indica o quanto o bioetanol <strong>conduz eletricidade</strong>. O álcool puro conduz muito pouco; alta condutividade revela a presença de íons, sais, cloretos ou outros contaminantes dissolvidos — resultado de processo produtivo inadequado ou contaminação.
+          </p>
+          <div class="gloss-tip">💡 <strong>Por que importa:</strong> contaminantes iônicos aceleram corrosão e podem causar falhas elétricas em sensores do veículo.</div>
+        </div>
+
+        <div class="gloss-card">
+          <div class="gloss-card-top">
+            <span class="gloss-icon">🔬</span>
+            <div>
+              <div class="gloss-name">pH</div>
+              <div class="gloss-unit">Escala 0 – 14</div>
+            </div>
+          </div>
+          <p class="gloss-desc">
+            O pH mede o grau de <strong>acidez ou basicidade</strong> do bioetanol. A escala vai de 0 (muito ácido) a 14 (muito básico), sendo 7 neutro. O bioetanol de qualidade deve ficar entre <strong>6,0 e 8,0</strong>, próximo da neutralidade. pH baixo indica formação de ácidos; pH alto pode indicar adição de bases para mascarar acidez.
+          </p>
+          <div class="gloss-tip">💡 <strong>Por que importa:</strong> complementa a análise de acidez — juntos, pH e acidez identificam melhor a natureza dos contaminantes.</div>
+        </div>
+
+        <div class="gloss-card gloss-card--wide">
+          <div class="gloss-card-top">
+            <span class="gloss-icon">📊</span>
+            <div>
+              <div class="gloss-name">Como a pontuação é calculada</div>
+              <div class="gloss-unit">Sistema de pontuação da BioCalculadora</div>
+            </div>
+          </div>
+          <p class="gloss-desc">
+            Cada parâmetro informado recebe uma pontuação: <strong>2 pontos</strong> se estiver dentro do padrão ANP, <strong>1 ponto</strong> se estiver em zona de atenção (próximo do limite) e <strong>0 pontos</strong> se estiver fora. A pontuação final é a porcentagem do total possível. Acima de 85% sem reprovações = <span style="color:#27ae60">Aprovado</span>. Entre 60–85% = <span style="color:#f39c12">Atenção</span>. Abaixo disso ou com reprovações = <span style="color:#e74c3c">Reprovado/Irregular</span>.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONVERSOR DE MEDIDAS -->
+  <section class="conversor-section" id="conversor">
+    <div class="conversor-inner">
+      <div class="conversor-header">
+        <span class="label-tag">Utilidade</span>
+        <h2>Conversor de Medidas</h2>
+        <p>Converta as unidades para os padrões utilizados na calculadora e nas normas ANP</p>
+      </div>
+      <div id="conversorContent" class="conversor-grid">
+        <!-- Preenchido via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
   <section class="sobre-section" id="sobre">
     <div class="sobre-img-wrap">
       <img src="https://blog.edenredmobilidade.com.br/wp-content/uploads/2024/07/Etanol-combustivel-sustentavel-que-transforma-o-futuro-da-energia-scaled.jpg" alt="Milho">
@@ -274,6 +446,8 @@
       <a href="#calculadora" class="btn-sobre">Acessar a Calculadora</a>
     </div>
   </section>
+
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-col">
@@ -287,30 +461,10 @@
         <a href="#inicio">Início</a>
         <a href="#calculadora">Calculadora</a>
         <a href="#parametros">Parâmetros ANP</a>
+        <a href="#glossario">Glossário</a>
+        <a href="#conversor">Conversor</a>
         <a href="#sobre">Sobre</a>
       </div>
-      <div class="cookie-banner" id="cookieBanner">
-  <div class="cookie-left">
-    <div class="cookie-icon">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="10" stroke="#5aaa40" stroke-width="1.5"/>
-        <circle cx="9" cy="9" r="1.2" fill="#5aaa40"/>
-        <circle cx="14.5" cy="8" r="0.9" fill="#5aaa40"/>
-        <circle cx="15" cy="14" r="1.2" fill="#5aaa40"/>
-        <circle cx="9.5" cy="14.5" r="0.8" fill="#5aaa40"/>
-        <circle cx="12" cy="11.5" r="0.7" fill="#5aaa40"/>
-      </svg>
-    </div>
-    <div class="cookie-text">
-      <p><strong>Utilizamos cookies</strong> para melhorar sua experiência na plataforma e garantir o funcionamento correto das ferramentas.</p>
-      <a href="#">Saiba mais sobre nossa política</a>
-    </div>
-  </div>
-  <div class="cookie-btns">
-    <button class="btn-rejeitar" onclick="handleCookie('rejeitar')">Rejeitar</button>
-    <button class="btn-aceitar" onclick="handleCookie('aceitar')">Aceitar cookies</button>
-  </div>
-</div>
       <div class="footer-col">
         <strong>Referências</strong>
         <a href="https://atosoficiais.com.br/anp/resolucao-n-907-2022-dispoe-sobre-as-especificacoes-do-etanol-combustivel-e-suas-regras-de-comercializacao-em-todo-o-territorio-nacional?origin=instituicao">ANP – Agência Nacional do Petróleo</a>
@@ -322,6 +476,29 @@
       <span>© 2026 BioCalculadora · Desenvolvido por estudantes do <a href="https://lasalle.edu.br/lucas/" target="_blank">Colégio La Salle Lucas do Rio Verde - MT</a></span>
     </div>
   </footer>
+
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-left">
+      <div class="cookie-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" stroke="#5aaa40" stroke-width="1.5"/>
+          <circle cx="9" cy="9" r="1.2" fill="#5aaa40"/>
+          <circle cx="14.5" cy="8" r="0.9" fill="#5aaa40"/>
+          <circle cx="15" cy="14" r="1.2" fill="#5aaa40"/>
+          <circle cx="9.5" cy="14.5" r="0.8" fill="#5aaa40"/>
+          <circle cx="12" cy="11.5" r="0.7" fill="#5aaa40"/>
+        </svg>
+      </div>
+      <div class="cookie-text">
+        <p><strong>Utilizamos cookies</strong> para melhorar sua experiência na plataforma e garantir o funcionamento correto das ferramentas.</p>
+        <a href="#">Saiba mais sobre nossa política</a>
+      </div>
+    </div>
+    <div class="cookie-btns">
+      <button class="btn-rejeitar" onclick="handleCookie('rejeitar')">Rejeitar</button>
+      <button class="btn-aceitar" onclick="handleCookie('aceitar')">Aceitar cookies</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
