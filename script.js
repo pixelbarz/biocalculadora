@@ -99,8 +99,8 @@ function avaliarAcidez(acidez) {
 
 function avaliarCondutividade(cond) {
   if (cond === '' || cond === null || cond === undefined) return null;
-  if (cond <= 500) return 'ok';
-  if (cond <= 650) return 'warn';
+  if (cond <= 350) return 'ok';
+  if (cond <= 500) return 'warn';
   return 'bad';
 }
 
