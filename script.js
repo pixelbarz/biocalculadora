@@ -12,9 +12,11 @@ document.querySelectorAll('.mobile-menu a').forEach(function(link) {
 });
 
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', function() {
-  navbar.classList.toggle('scrolled', window.scrollY > 20);
-}, { passive: true });
+if (navbar) {
+  window.addEventListener('scroll', function() {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+}
 
 document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   a.addEventListener('click', function(e) {

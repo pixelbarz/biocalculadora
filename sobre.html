@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <title>BioCalculadora – O que é e como funciona</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <span>Plataforma de Análise de Biocombustíveis · Brasil</span>
+      <div class="top-bar-links">
+        <a href="index.html#calculadora">Calculadora</a>
+        <span class="tb-sep"></span>
+        <a href="assinatura.html">Planos</a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="sobre.html" class="nav-logo">
+        <span class="logo-mark"></span>
+        Bio<strong>Calculadora</strong>
+      </a>
+      <div class="nav-links" id="navDesktop">
+        <a href="sobre.html" class="nav-link active">Sobre</a>
+        <a href="index.html#calculadora" class="nav-link">Calculadora</a>
+        <a href="index.html#parametros" class="nav-link">Parâmetros ANP</a>
+        <a href="assinatura.html" class="nav-link">Planos</a>
+      </div>
+      <a href="index.html#calculadora" class="nav-cta">Acessar Calculadora</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="sobre.html">Sobre</a>
+    <a href="index.html#calculadora">Calculadora</a>
+    <a href="index.html#parametros">Parâmetros ANP</a>
+    <a href="assinatura.html">Planos</a>
+  </div>
+
+  <section class="intro-hero">
+    <div class="intro-hero-inner">
+      <p class="hero-eyebrow">Entenda a plataforma</p>
+      <h1 class="hero-title intro-title">
+        O que é a<br><em>BioCalculadora</em>
+      </h1>
+      <p class="intro-lead">
+        Uma ferramenta técnica gratuita que avalia a qualidade do bioetanol
+        combustível a partir dos parâmetros de laboratório, comparando cada
+        índice com os limites definidos pela ANP e pela ABNT.
+      </p>
+      <div class="hero-actions">
+        <a href="index.html#calculadora" class="btn-primary">Ir para a calculadora</a>
+        <a href="#como-funciona" class="btn-ghost-dark">Ver como funciona</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro-steps" id="como-funciona">
+    <div class="intro-inner">
+      <p class="section-tag">Como funciona</p>
+      <h2>Do dado de laboratório ao diagnóstico, em três etapas</h2>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <span class="step-num">01</span>
+          <h3>Você informa os parâmetros</h3>
+          <p>
+            Insira o tipo de etanol (anidro ou hidratado) e os valores medidos
+            em laboratório: densidade, teor alcoólico, teor de água, acidez
+            total, condutividade elétrica e pH. Não é preciso preencher todos
+            de uma vez, apenas dois já geram um diagnóstico.
+          </p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">02</span>
+          <h3>A plataforma compara com as normas</h3>
+          <p>
+            Cada parâmetro é confrontado com as faixas de referência da NBR
+            5992, NBR 15531, NBR 9866, NBR 10547 e NBR 10891, que regulam a
+            especificação do etanol combustível no Brasil. Quando há
+            temperatura diferente de 20°C, o teor alcoólico é corrigido antes
+            da comparação.
+          </p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">03</span>
+          <h3>Você recebe o diagnóstico</h3>
+          <p>
+            O resultado mostra uma pontuação geral, a classificação da amostra
+            (aprovado, atenção, irregular ou reprovado), o detalhamento de
+            cada indicador e um gráfico da distribuição dos parâmetros. É
+            possível exportar tudo em um relatório.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro-why">
+    <div class="intro-inner intro-why-grid">
+      <div class="why-text">
+        <p class="section-tag">Por que usar</p>
+        <h2>Feita para quem lida com bioetanol no dia a dia</h2>
+        <p>
+          A BioCalculadora não substitui a análise laboratorial certificada,
+          mas funciona como uma primeira triagem, rápida e acessível, para
+          apoiar decisões de usinas, distribuidoras, postos e laboratórios
+          antes mesmo de um laudo formal.
+        </p>
+      </div>
+      <ul class="why-list">
+        <li>
+          <strong>Resultado imediato</strong>
+          <span>O diagnóstico é calculado assim que os parâmetros são inseridos, sem espera.</span>
+        </li>
+        <li>
+          <strong>Base normativa clara</strong>
+          <span>Todos os limites usados vêm diretamente das normas ANP e ABNT vigentes.</span>
+        </li>
+        <li>
+          <strong>Totalmente gratuita</strong>
+          <span>O acesso à calculadora e à consulta de parâmetros não tem custo.</span>
+        </li>
+        <li>
+          <strong>Relatório exportável</strong>
+          <span>Gere um resumo do diagnóstico para arquivar ou compartilhar com sua equipe.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="intro-cta">
+    <div class="intro-inner intro-cta-inner">
+      <h2>Pronto para testar sua amostra?</h2>
+      <p>Leva menos de um minuto para ter um primeiro diagnóstico.</p>
+      <div class="hero-actions">
+        <a href="index.html#calculadora" class="btn-primary">Acessar a Calculadora</a>
+        <a href="assinatura.html" class="btn-outline-dark">Conhecer os planos</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col footer-col--brand">
+        <div class="footer-logo">
+          <span class="logo-mark logo-mark--sm"></span>
+          Bio<strong>Calculadora</strong>
+        </div>
+        <p>Plataforma gratuita de análise de qualidade para o bioetanol combustível brasileiro.</p>
+      </div>
+      <div class="footer-col">
+        <strong>Navegação</strong>
+        <a href="sobre.html">Sobre</a>
+        <a href="index.html#calculadora">Calculadora</a>
+        <a href="index.html#parametros">Parâmetros ANP</a>
+        <a href="assinatura.html">Planos</a>
+      </div>
+      <div class="footer-col">
+        <strong>Referências</strong>
+        <a href="https://atosoficiais.com.br/anp/resolucao-n-907-2022-dispoe-sobre-as-especificacoes-do-etanol-combustivel-e-suas-regras-de-comercializacao-em-todo-o-territorio-nacional?origin=instituicao" target="_blank" rel="noopener noreferrer">ANP – Agência Nacional do Petróleo</a>
+        <a href="https://abnt.org.br/" target="_blank" rel="noopener noreferrer">ABNT – Normas Técnicas</a>
+        <a href="https://www.gov.br/agricultura/pt-br" target="_blank" rel="noopener noreferrer">MAPA – Ministério da Agricultura</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 BioCalculadora · Desenvolvido por estudantes <a href="https://lasalle.edu.br/lucas" target="_blank" rel="noopener noreferrer">Colégio La Salle Lucas do Rio Verde.</a></span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

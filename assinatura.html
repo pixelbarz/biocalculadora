@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <title>BioCalculadora – Planos e Assinatura</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <span>Plataforma de Análise de Biocombustíveis · Brasil</span>
+      <div class="top-bar-links">
+        <a href="index.html#calculadora">Calculadora</a>
+        <span class="tb-sep"></span>
+        <a href="sobre.html">Sobre</a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="sobre.html" class="nav-logo">
+        <span class="logo-mark"></span>
+        Bio<strong>Calculadora</strong>
+      </a>
+      <div class="nav-links" id="navDesktop">
+        <a href="sobre.html" class="nav-link">Sobre</a>
+        <a href="index.html#calculadora" class="nav-link">Calculadora</a>
+        <a href="index.html#parametros" class="nav-link">Parâmetros ANP</a>
+        <a href="assinatura.html" class="nav-link active">Planos</a>
+      </div>
+      <a href="index.html#calculadora" class="nav-cta">Acessar Calculadora</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="sobre.html">Sobre</a>
+    <a href="index.html#calculadora">Calculadora</a>
+    <a href="index.html#parametros">Parâmetros ANP</a>
+    <a href="assinatura.html">Planos</a>
+  </div>
+
+  <section class="plans-hero">
+    <div class="intro-hero-inner">
+      <p class="hero-eyebrow">Planos BioCalculadora</p>
+      <h1 class="hero-title intro-title">
+        Leve sua análise<br><em>além do básico</em>
+      </h1>
+      <p class="intro-lead">
+        A calculadora continua gratuita para qualquer pessoa. Para quem
+        precisa acompanhar várias amostras, o plano Pro adiciona histórico,
+        relatórios avançados e mais.
+      </p>
+    </div>
+  </section>
+
+  <section class="plans-section">
+    <div class="intro-inner">
+
+      <div class="billing-toggle" role="tablist" aria-label="Ciclo de cobrança">
+        <button class="toggle-btn active" id="toggleMensal" type="button">Mensal</button>
+        <button class="toggle-btn" id="toggleAnual" type="button">Anual <span class="toggle-badge">-20%</span></button>
+      </div>
+
+      <div class="plans-grid">
+
+        <div class="plan-card">
+          <div class="plan-head">
+            <p class="plan-name">Gratuito</p>
+            <p class="plan-price"><span class="plan-value">R$ 0</span><span class="plan-period">/sempre</span></p>
+            <p class="plan-desc">Para uma análise pontual, sem cadastro.</p>
+          </div>
+          <ul class="plan-features">
+            <li><span class="feat-check">✓</span> Cálculo completo de qualidade</li>
+            <li><span class="feat-check">✓</span> Consulta às normas ANP/ABNT</li>
+            <li><span class="feat-check">✓</span> Gráfico de distribuição da amostra</li>
+            <li><span class="feat-check">✓</span> Exportação de relatório em texto</li>
+            <li class="feat-off"><span class="feat-x">–</span> Histórico de amostras</li>
+            <li class="feat-off"><span class="feat-x">–</span> Relatório em TXT com marca própria</li>
+          </ul>
+          <a href="index.html#calculadora" class="btn-outline-dark plan-btn">Usar gratuitamente</a>
+        </div>
+
+        <div class="plan-card plan-card--featured">
+          <div class="plan-highlight">Mais escolhido</div>
+          <div class="plan-head">
+            <p class="plan-name">Pro</p>
+            <p class="plan-price">
+              <span class="plan-value" data-mensal="R$ 29" data-anual="R$ 23">R$ 29</span><span class="plan-period">/mês</span>
+            </p>
+            <p class="plan-desc">Para quem analisa amostras com frequência.</p>
+          </div>
+          <ul class="plan-features">
+            <li><span class="feat-check">✓</span> Tudo do plano Gratuito</li>
+            <li><span class="feat-check">✓</span> Histórico ilimitado de amostras</li>
+            <li><span class="feat-check">✓</span> Comparativo entre amostras ao longo do tempo</li>
+            <li><span class="feat-check">✓</span> Relatório em TXT com identidade da empresa</li>
+            <li><span class="feat-check">✓</span> Alertas automáticos por e-mail em amostras reprovadas</li>
+            <li><span class="feat-check">✓</span> Suporte técnico prioritário</li>
+          </ul>
+          <button class="btn-primary plan-btn" type="button" disabled>Assinatura em breve</button>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-head">
+            <p class="plan-name">Laboratório</p>
+            <p class="plan-price">
+              <span class="plan-value" data-mensal="R$ 89" data-anual="R$ 71">R$ 89</span><span class="plan-period">/mês</span>
+            </p>
+            <p class="plan-desc">Para equipes e múltiplos usuários.</p>
+          </div>
+          <ul class="plan-features">
+            <li><span class="feat-check">✓</span> Tudo do plano Pro</li>
+            <li><span class="feat-check">✓</span> Múltiplos usuários por conta</li>
+            <li><span class="feat-check">✓</span> Painel consolidado de todas as amostras da equipe</li>
+            <li><span class="feat-check">✓</span> Exportação em lote (CSV/PDF)</li>
+            <li><span class="feat-check">✓</span> Integração via API para sistemas internos</li>
+          </ul>
+          <button class="btn-outline-dark plan-btn" type="button" disabled>Assinatura em breve</button>
+        </div>
+
+      </div>
+
+      <p class="plans-note">
+        As assinaturas ainda não estão disponíveis para contratação. As
+        páginas de planos foram publicadas para antecipar as funcionalidades
+        que chegarão para quem assinar.
+      </p>
+    </div>
+  </section>
+
+  <section class="plans-faq">
+    <div class="intro-inner">
+      <p class="section-tag">Dúvidas frequentes</p>
+      <h2>Perguntas sobre os planos</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <p class="faq-q">A calculadora vai deixar de ser gratuita?</p>
+          <p class="faq-a">Não. O cálculo de qualidade e a consulta às normas ANP continuam disponíveis sem custo, como sempre foram.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">O que muda com o plano Pro?</p>
+          <p class="faq-a">O foco do plano Pro é acompanhamento ao longo do tempo: histórico de amostras, comparação entre análises e relatórios com a identidade da sua empresa.</p>
+        </div>
+        <div class="faq-item">
+          <p class="faq-q">Quando a assinatura estará disponível?</p>
+          <p class="faq-a">Ainda estamos preparando a estrutura de pagamento. Por enquanto, esta página mostra o que está planejado para cada plano.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col footer-col--brand">
+        <div class="footer-logo">
+          <span class="logo-mark logo-mark--sm"></span>
+          Bio<strong>Calculadora</strong>
+        </div>
+        <p>Plataforma gratuita de análise de qualidade para o bioetanol combustível brasileiro.</p>
+      </div>
+      <div class="footer-col">
+        <strong>Navegação</strong>
+        <a href="sobre.html">Sobre</a>
+        <a href="index.html#calculadora">Calculadora</a>
+        <a href="index.html#parametros">Parâmetros ANP</a>
+        <a href="assinatura.html">Planos</a>
+      </div>
+      <div class="footer-col">
+        <strong>Referências</strong>
+        <a href="https://atosoficiais.com.br/anp/resolucao-n-907-2022-dispoe-sobre-as-especificacoes-do-etanol-combustivel-e-suas-regras-de-comercializacao-em-todo-o-territorio-nacional?origin=instituicao" target="_blank" rel="noopener noreferrer">ANP – Agência Nacional do Petróleo</a>
+        <a href="https://abnt.org.br/" target="_blank" rel="noopener noreferrer">ABNT – Normas Técnicas</a>
+        <a href="https://www.gov.br/agricultura/pt-br" target="_blank" rel="noopener noreferrer">MAPA – Ministério da Agricultura</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 BioCalculadora · Desenvolvido por estudantes <a href="https://lasalle.edu.br/lucas" target="_blank" rel="noopener noreferrer">Colégio La Salle Lucas do Rio Verde.</a></span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    (function () {
+      var mensalBtn = document.getElementById('toggleMensal');
+      var anualBtn  = document.getElementById('toggleAnual');
+      var values    = document.querySelectorAll('.plan-value[data-mensal]');
+
+      function setCiclo(ciclo) {
+        mensalBtn.classList.toggle('active', ciclo === 'mensal');
+        anualBtn.classList.toggle('active', ciclo === 'anual');
+        values.forEach(function (el) {
+          el.textContent = ciclo === 'anual' ? el.dataset.anual : el.dataset.mensal;
+        });
+        document.querySelectorAll('.plan-period').forEach(function (el) {
+          el.textContent = ciclo === 'anual' ? '/mês, cobrado anualmente' : '/mês';
+        });
+      }
+
+      mensalBtn.addEventListener('click', function () { setCiclo('mensal'); });
+      anualBtn.addEventListener('click', function () { setCiclo('anual'); });
+    }());
+  </script>
+</body>
+</html>
